@@ -1,35 +1,35 @@
-package com.ksidelta.library.gesta;
+package com.ksidelta.library.gesta.matcher;
 
 import com.ksidelta.library.gesta.processor.pattern.PatternProcessorFactory;
-import com.ksidelta.library.gesta.matcher.ClosestPointsForwardMatcher;
-import com.ksidelta.library.gesta.matcher.PatternMatcher;
 import com.ksidelta.library.gesta.shapes.pattern.NamedPattern;
 import com.ksidelta.library.gesta.vault.PatternVault;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createAngleLine;
 import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createHorizontalLine;
+import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createRunicP;
 import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createVerticalLine;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-;
 
 /**
  * TODO: Document this class / interface here
  *
  * @since v7.4
  */
-public class TestPatternVaultSimpleMatching {
+public abstract class AbstractPatternVaultSimpleMatchingTest {
     PatternVault patternVault;
 
-    @Before
+    abstract PatternMatcher getMatcher();
+
+    @BeforeEach
     public void setUp() {
-        PatternMatcher patternMatcher = new ClosestPointsForwardMatcher(5);
+        PatternMatcher patternMatcher = getMatcher();
         this.patternVault = new PatternVault(patternMatcher, PatternProcessorFactory.createStandardChain(), createSimplePatterns());
     }
 
@@ -52,9 +52,9 @@ public class TestPatternVaultSimpleMatching {
     }
 
     @Test
-    public void angledLinesShouldMatch(){
-        assertEquals(patternVault.matchPattern(createAngleLine(Math.PI*1/6)).get().getNamedPattern().getName(), "horizontal");
-        assertEquals(patternVault.matchPattern(createAngleLine(Math.PI*2/6)).get().getNamedPattern().getName(), "vertical");
+    public void angledLinesShouldMatch() {
+        assertEquals(patternVault.matchPattern(createAngleLine(Math.PI * 1 / 12)).get().getNamedPattern().getName(), "horizontal");
+        assertEquals(patternVault.matchPattern(createAngleLine(Math.PI * 10 / 12)).get().getNamedPattern().getName(), "vertical");
 
     }
 
@@ -62,6 +62,8 @@ public class TestPatternVaultSimpleMatching {
         List<NamedPattern> namedPatterns = new LinkedList<>();
         namedPatterns.add(new NamedPattern("horizontal", createHorizontalLine()));
         namedPatterns.add(new NamedPattern("vertical", createVerticalLine()));
+        namedPatterns.add(new NamedPattern("45* angle", createAngleLine(Math.PI * 1 / 4)));
+        namedPatterns.add(new NamedPattern("Py!", createRunicP()));
         return namedPatterns;
     }
 }

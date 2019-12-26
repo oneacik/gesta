@@ -15,11 +15,11 @@ public class Point implements PositionTransformable<Point> {
     }
 
     public Point translate(double x, double y) {
-        return reset(this.x + x, this.y + y);
+        return new Point(this.x + x, this.y + y);
     }
 
     public Point scale(double x, double y) {
-        return reset(this.x * x, this.y * y);
+        return new Point(this.x * x, this.y * y);
     }
 
     public double squareDistance(Point p) {
@@ -30,13 +30,8 @@ public class Point implements PositionTransformable<Point> {
         return Math.sqrt(squareDistance(p));
     }
 
-    /**
-     * function used to reuse old object in functional way.
-     */
-    private Point reset(double x, double y) {
-        this.x = x;
-        this.y = y;
-        return this;
+    public Point minus(Point point) {
+        return new Point(this.getX() - point.getX(), this.getY() - point.getY());
     }
 
     public double getX() {

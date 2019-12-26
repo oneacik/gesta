@@ -1,5 +1,6 @@
 package com.ksidelta.library.gesta.shapes.pattern;
 
+import com.google.common.collect.Streams;
 import com.ksidelta.library.gesta.shapes.Point;
 import com.ksidelta.library.gesta.shapes.PositionTransformable;
 
@@ -7,6 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static java.lang.Integer.min;
 
 /**
  * TODO: Document this class / interface here
@@ -24,6 +28,11 @@ public class Pattern implements PositionTransformable<Pattern> {
         this.points = points;
     }
 
+    /**
+     * NON FUNCTIONAL!!!
+     * <p>
+     * This one doesn't recreate whole Pattern
+     */
     public Pattern addPoint(Point p) {
         this.points.add(p);
         return this;
@@ -44,13 +53,19 @@ public class Pattern implements PositionTransformable<Pattern> {
     }
 
     public Pattern translate(double x, double y) {
-        this.points.forEach(point -> point.translate(x, y));
-        return this;
+        return new Pattern(
+                this.points.stream()
+                        .map(point -> point.translate(x, y))
+                        .collect(Collectors.toList())
+        );
     }
 
     public Pattern scale(double x, double y) {
-        this.points.forEach(point -> point.scale(x, y));
-        return this;
+        return new Pattern(
+                this.points.stream()
+                        .map(point -> point.scale(x, y))
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
@@ -69,6 +84,62 @@ public class Pattern implements PositionTransformable<Pattern> {
 
     public double getHeight() {
         return getMinMax(Point::getY);
+    }
+
+    public double getLength() {
+        class PointWithSum {
+            Point point;
+            double sum;
+
+            public PointWithSum(Point point, double sum) {
+                this.point = point;
+                this.sum = sum;
+            }
+
+            public Point point() {
+                return point;
+            }
+
+            public double sum() {
+                return sum;
+            }
+        }
+
+        return points.stream().reduce(
+                new PointWithSum(points.get(0), 0.0),
+                (a, b) -> new PointWithSum(b, a.point().distance(b) + a.sum()),
+                (a, b) -> {
+                    throw new RuntimeException("This shouldn't be ever used");
+                }
+        ).sum();
+    }
+
+    public Point minus(Pattern pattern) {
+        class Pa {
+            Point a;
+            Point b;
+
+            public Pa(Point a, Point b) {
+                this.a = a;
+                this.b = b;
+            }
+
+            public Point minus() {
+                return a.minus(b);
+            }
+        }
+
+
+        return Streams.zip(this.getPoints().stream(), pattern.getPoints().stream(), (a, b) -> new Pa(a, b))
+                .map(x -> x.minus())
+                .reduce((a, b) -> a.translate(b.getX(), b.getY()))
+                .map(point ->
+                        new Point(
+                                point.getX() / min(getPoints().size(), pattern.getPoints().size()),
+                                point.getY() / min(getPoints().size(), pattern.getPoints().size())
+                        )
+                )
+                .orElseThrow(() -> new IllegalStateException("Need more points"));
     }
 
 

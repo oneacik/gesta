@@ -7,9 +7,8 @@ import com.ksidelta.library.gesta.shapes.Point;
 import com.ksidelta.library.gesta.shapes.pattern.NamedPattern;
 import com.ksidelta.library.gesta.shapes.pattern.Pattern;
 import com.ksidelta.library.gesta.vault.PatternVault;
-import com.ksidelta.library.gesta.vault.tuples.NamedPatternScore;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,11 +52,11 @@ public class InteractiveGestureTesting {
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            Pattern p =new Pattern(points)
-                    .scale(1,-1);//need to invert axis in this retarded shit
+            Pattern p = new Pattern(points)
+                    .scale(1, -1);//need to invert axis in this retarded shit
             patternVault
                     .matchPattern(p)
-                    .ifPresent(x->{
+                    .ifPresent(x -> {
                         System.out.format("PATTERN %s SCORE %f", x.getNamedPattern().getName(), x.getScore());
                     });
             System.out.println("");
@@ -105,7 +104,7 @@ public class InteractiveGestureTesting {
 
     };
 
-    @Before
+    @BeforeEach
     public void setUp() {
         PatternMatcher patternMatcher = new ClosestPointsForwardMatcher(5);
         this.patternVault = new PatternVault(patternMatcher, PatternProcessorFactory.createStandardChain(), createSimplePatterns());
