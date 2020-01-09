@@ -8,6 +8,7 @@ import com.ksidelta.library.gesta.shapes.pattern.NamedPattern;
 import com.ksidelta.library.gesta.shapes.pattern.Pattern;
 import com.ksidelta.library.gesta.vault.PatternVault;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
@@ -30,6 +31,7 @@ import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createVe
  *
  * @since v7.4
  */
+@Disabled
 public class InteractiveGestureTesting {
     private PatternVault patternVault;
 
