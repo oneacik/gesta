@@ -13,9 +13,7 @@ import java.util.stream.Collectors;
 import static java.lang.Integer.min;
 
 /**
- * TODO: Document this class / interface here
- *
- * @since v7.4
+ * Pattern represents group of ordered points.
  */
 public class Pattern implements PositionTransformable<Pattern> {
     private List<Point> points;

@@ -13,9 +13,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * TODO: Document this class / interface here
- *
- * @since v7.4
+ * PatternVault is basic class containing patterns.
+ * It is used to recognize patterns.
  */
 public class PatternVault {
     final private PatternMatcher patternMatcher;

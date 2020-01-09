@@ -1,9 +1,7 @@
 package com.ksidelta.library.gesta.shapes;
 
 /**
- * TODO: Document this class / interface here
- *
- * @since v7.4
+ * Point represents point.
  */
 public class Point implements PositionTransformable<Point> {
     private double x;

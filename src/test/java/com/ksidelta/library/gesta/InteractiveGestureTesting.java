@@ -24,13 +24,6 @@ import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createHo
 import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createRunicP;
 import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createVerticalLine;
 
-;
-
-/**
- * TODO: Document this class / interface here
- *
- * @since v7.4
- */
 @Disabled
 public class InteractiveGestureTesting {
     private PatternVault patternVault;

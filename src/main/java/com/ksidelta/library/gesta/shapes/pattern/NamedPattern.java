@@ -1,9 +1,7 @@
 package com.ksidelta.library.gesta.shapes.pattern;
 
 /**
- * TODO: Document this class / interface here
- *
- * @since v7.4
+ * Named Pattern is a Pattern with its name.
  */
 public class NamedPattern {
     private final Pattern pattern;

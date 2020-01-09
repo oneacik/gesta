@@ -14,9 +14,7 @@ import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createRu
 import static com.ksidelta.library.gesta.shapes.pattern.PatternsFactory.createVerticalLine;
 
 /**
- * TODO: Document this class / interface here
- *
- * @since v7.4
+ * Example like PatternVault creator.
  */
 public class PatternVaultFactory {
 

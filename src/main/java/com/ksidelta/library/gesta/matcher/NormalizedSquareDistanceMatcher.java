@@ -4,6 +4,10 @@ import com.google.common.collect.Streams;
 import com.ksidelta.library.gesta.shapes.Point;
 import com.ksidelta.library.gesta.shapes.pattern.Pattern;
 
+/**
+ * Matcher normalizing linearly distance between {@link Point}s.
+ * It counts square avarage of distance between two {@link Pattern}s.
+ */
 public class NormalizedSquareDistanceMatcher implements PatternMatcher {
     public final Integer normalizedNumberOfPoints;
 
