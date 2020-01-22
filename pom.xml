@@ -12,8 +12,8 @@
     <description>Gesta is a simple pattern recognition engine.</description>
     <url>https://github.com/oneacik/gesta</url>
     <scm>
-        <connection>scm:git:ssh://github.com:oneacik/gesta.git</connection>
-        <developerConnection>git@github.com:oneacik/gesta.git</developerConnection>
+        <connection>scm:git:git://github.com/oneacik/gesta.git</connection>
+        <developerConnection>scm:git:git@github.com:oneacik/gesta.git</developerConnection>
         <url>https://github.com/oneacik/gesta/</url>
         <tag>HEAD</tag>
     </scm>
