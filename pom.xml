@@ -5,7 +5,7 @@
 
     <groupId>com.ksidelta.library</groupId>
     <artifactId>gesta</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.3</version>
     <packaging>jar</packaging>
 
     <name>${groupId}:${artifactId}</name>
@@ -15,7 +15,7 @@
         <connection>scm:git:git://github.com/oneacik/gesta.git</connection>
         <developerConnection>scm:git:git@github.com:oneacik/gesta.git</developerConnection>
         <url>https://github.com/oneacik/gesta/</url>
-        <tag>HEAD</tag>
+        <tag>gesta-0.0.3</tag>
     </scm>
 
     <distributionManagement>
